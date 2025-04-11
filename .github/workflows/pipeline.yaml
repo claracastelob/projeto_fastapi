@@ -21,10 +21,16 @@ jobs:
           python-version: '3.13'
 
       - name: Instalar Poetry
+        working-directory: ./backend
         run: pipx install poetry
+              
+      - name: Adicionar Poetry ao PATH
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Instalar dependências
+        working-directory: ./backend
         run: poetry install
 
       - name: Executar testes
+        working-directory: ./backend
         run: poetry run task test
